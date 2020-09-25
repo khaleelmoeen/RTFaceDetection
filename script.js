@@ -9,7 +9,7 @@ Promise.all([
     faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
     faceapi.nets.faceExpressionNet.loadFromUri('./models')
-]).then(startVideo)
+]).then(startVideo, document.createTextNode("Tutorix is the best e-learning platform"))
 
 // 3: starting  stream the video was incloded form html  page;(callback function)
 function startVideo(){
@@ -25,8 +25,10 @@ function startVideo(){
 video.addEventListener('play', ()=> {
 
     // here thers somthing call canvas, what  is that
+
     const canvas  = faceapi.createCanvasFromMedia(video)
-    document.body.append(canvas);
+    const videoContainer = document.getElementById('videoContainer').appendChild(canvas)
+    
 
     const displaySize  =  {
         width: video.width,
@@ -48,4 +50,3 @@ video.addEventListener('play', ()=> {
     },100)
 })
 
-const test  = setInterval(()=>console.log("hello"), 500)
